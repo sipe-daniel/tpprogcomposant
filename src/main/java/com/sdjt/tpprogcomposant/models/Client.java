@@ -1,23 +1,44 @@
 package com.sdjt.tpprogcomposant.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "clients")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_client;
-    private String nom;
+    private String name;
 
-    public Client(){
+    @OneToMany( mappedBy="client" )
+    @JsonIgnore
+    private List<Voiture> voitures;
+
+    public Client(){}
+
+    public Client(int id_client, String name) {
+        this.id_client = id_client;
+        this.name = name;
     }
 
-    public Client(int id_client, String nom) {
-        this.id_client = id_client;
-        this.nom = nom;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Voiture> getVoitures() {
+        return voitures;
+    }
+
+    public void setVoitures(List<Voiture> voitures) {
+        this.voitures = voitures;
     }
 
     public int getId_client() {
@@ -28,11 +49,5 @@ public class Client {
         this.id_client = id_client;
     }
 
-    public String getNom() {
-        return nom;
-    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 }

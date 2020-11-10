@@ -1,12 +1,14 @@
 package com.sdjt.tpprogcomposant.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "adresses")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Adresse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +16,10 @@ public class Adresse {
     private String ville_adresse;
     private String pays;
     private String numero_de_tel;
+
+    @ManyToOne
+    @JsonIgnore
+    private Concessionnaire concessionnaire;
 
     public Adresse() {
     }
@@ -23,6 +29,14 @@ public class Adresse {
         this.ville_adresse = ville_adresse;
         this.pays = pays;
         this.numero_de_tel = numero_de_tel;
+    }
+
+    public Concessionnaire getConcessionnaire() {
+        return concessionnaire;
+    }
+
+    public void setConcessionnaire(Concessionnaire concessionnaire) {
+        this.concessionnaire = concessionnaire;
     }
 
     public int getId_adresse() {
@@ -56,4 +70,5 @@ public class Adresse {
     public void setNumero_de_tel(String numero_de_tel) {
         this.numero_de_tel = numero_de_tel;
     }
+
 }

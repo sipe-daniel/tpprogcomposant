@@ -1,24 +1,47 @@
 package com.sdjt.tpprogcomposant.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "concessionnaires")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Concessionnaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_concessionnaire;
-    private String nom_concessionnaire;
+    private String name;
+
+    @OneToMany( mappedBy="concessionnaire")
+    private List<Adresse> adresses;
+
+    @ManyToMany(mappedBy = "concessionnaires")
+    @JsonIgnore
+    private List<Marque> marques;
 
     public Concessionnaire() {
     }
 
-    public Concessionnaire(int id_concessionnaire, String nom) {
+    public Concessionnaire(int id_concessionnaire, String name) {
         this.id_concessionnaire = id_concessionnaire;
-        this.nom_concessionnaire = nom;
+        this.name = name;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public List<Adresse> getAdresses() { return adresses; }
+
+    public void setAdresses(List<Adresse> adresses) { this.adresses = adresses; }
+
+    public List<Marque> getMarques() { return marques; }
+
+    public void setMarques(List<Marque> marques) { this.marques = marques; }
+
+
 
     public int getId_concessionnaire() {
         return id_concessionnaire;
@@ -28,11 +51,5 @@ public class Concessionnaire {
         this.id_concessionnaire = id_concessionnaire;
     }
 
-    public String getNom() {
-        return nom_concessionnaire;
-    }
 
-    public void setNom(String nom) {
-        this.nom_concessionnaire = nom;
-    }
 }

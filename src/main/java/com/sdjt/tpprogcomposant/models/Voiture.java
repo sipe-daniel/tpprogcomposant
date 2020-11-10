@@ -1,23 +1,59 @@
 package com.sdjt.tpprogcomposant.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
 
 @Entity(name = "voitures")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Voiture {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id_voiture;
-    private String nom_voiture;
 
-    public Voiture() {
+    private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    @JsonIgnore
+    private Client client;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    @JsonIgnore
+    private Marque marque;
+
+    public Voiture() { }
+
+    public Voiture(int id_voiture, String name) {
+        this.id_voiture = id_voiture;
+        this.name = name;
     }
 
-    public Voiture(int id_voiture, String nom_voiture) {
-        this.id_voiture = id_voiture;
-        this.nom_voiture = nom_voiture;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Marque getMarque() {
+        return marque;
+    }
+
+    public void setMarque(Marque marque) {
+        this.marque = marque;
     }
 
     public int getId_voiture() {
@@ -28,11 +64,5 @@ public class Voiture {
         this.id_voiture = id_voiture;
     }
 
-    public String getNom_voiture() {
-        return nom_voiture;
-    }
 
-    public void setNom_voiture(String nom_voiture) {
-        this.nom_voiture = nom_voiture;
-    }
 }
