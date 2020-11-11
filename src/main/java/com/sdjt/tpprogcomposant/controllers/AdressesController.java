@@ -2,7 +2,9 @@ package com.sdjt.tpprogcomposant.controllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sdjt.tpprogcomposant.models.Adresse;
+import com.sdjt.tpprogcomposant.models.Concessionnaire;
 import com.sdjt.tpprogcomposant.repositories.AdresseRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +27,20 @@ public class AdressesController {
         return adresseRepository.getOne(id);
     }
 
-    /*@PostMapping
-    public Adresse create(@RequestBody final Adresse adresse) {
+    @PostMapping
+    public Adresse create(@RequestBody Adresse adresse) {
         return adresseRepository.saveAndFlush(adresse);
-    }*/
+    }
+
+    @RequestMapping(value="{id}", method = RequestMethod.DELETE)
+    public void delete (@PathVariable int id) {
+        adresseRepository.deleteById(id);
+    }
+
+    @RequestMapping(value = "{id}", method=RequestMethod.PUT)
+    public Adresse update(@PathVariable int id, @RequestBody Adresse adresse){
+        Adresse existingAdresse = adresseRepository.getOne(id);
+        BeanUtils.copyProperties(adresse, existingAdresse, "id_adresse");
+        return adresseRepository.saveAndFlush(existingAdresse);
+    }
 }

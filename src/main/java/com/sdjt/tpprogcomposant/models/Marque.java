@@ -15,13 +15,12 @@ public class Marque {
     private int id_marque;
     private String name;
 
-    @OneToMany( mappedBy="marque" )
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="marque" )
     @JsonIgnore
     private List<Voiture> voitures;
 
-    @ManyToMany
-    @JoinTable(
-            name = "concessionnaires_marques_junction",
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinTable(name = "concessionnaires_marques_junction",
             joinColumns = @JoinColumn(name = "id_concessionnaire"),
             inverseJoinColumns = @JoinColumn(name = "id_marque"))
     @JsonIgnore
@@ -66,6 +65,5 @@ public class Marque {
     public void setId_marque(int id_marque) {
         this.id_marque = id_marque;
     }
-
 
 }

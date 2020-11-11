@@ -1,12 +1,11 @@
 package com.sdjt.tpprogcomposant.controllers;
 
+import com.sdjt.tpprogcomposant.models.Marque;
 import com.sdjt.tpprogcomposant.models.Voiture;
 import com.sdjt.tpprogcomposant.repositories.VoitureRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,14 +19,25 @@ public class VoituresController {
         return voitureRepository.findAll();
     }
 
-    @GetMapping
-    @RequestMapping("{id}")
+    @GetMapping("{id}")
     public Voiture get(@PathVariable int id) {
         return voitureRepository.getOne(id);
     }
 
-    /*@PostMapping
-    public Voiture create(@RequestBody final Voiture voiture) {
+    @PostMapping
+    public Voiture create(@RequestBody Voiture voiture) {
         return voitureRepository.saveAndFlush(voiture);
-    }*/
+    }
+
+    @RequestMapping(value="{id}", method = RequestMethod.DELETE)
+    public void delete (@PathVariable int id) {
+        voitureRepository.deleteById(id);
+    }
+
+    @RequestMapping(value = "{id}", method=RequestMethod.PUT)
+    public Voiture update(@PathVariable int id, @RequestBody Voiture voiture){
+        Voiture existingVoiture = voitureRepository.getOne(id);
+        BeanUtils.copyProperties(voiture, existingVoiture, "id_voiture");
+        return voitureRepository.saveAndFlush(existingVoiture);
+    }
 }

@@ -5,3 +5,5 @@
 #https://stackoverflow.com/questions/14676342/ms-sql-creating-many-to-many-relation-with-a-junction-table
 #https://stackoverflow.com/questions/4011472/mappedby-reference-an-unknown-target-entity-property
 #https://stackoverflow.com/questions/35646432/org-h2-jdbc-jdbcsqlexception-column-salman-not-found
+#https://hellokoding.com/jpa-many-to-many-extra-columns-relationship-mapping-example-with-spring-boot-maven-and-mysql/
+#https://www.boraji.com/hibernate-5-many-to-many-association-example    <-------------- ici au niveau des commentaires

@@ -1,5 +1,4 @@
 package com.sdjt.tpprogcomposant.models;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -16,16 +15,14 @@ public class Voiture {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    @JsonIgnore
+    @JoinColumn(foreignKey = @ForeignKey(name = "id_client"), name = "id_client")
     private Client client;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    @JsonIgnore
+    @JoinColumn(foreignKey = @ForeignKey(name = "id_marque"), name = "id_marque")
     private Marque marque;
 
-    public Voiture() { }
+    public Voiture() {}
 
     public Voiture(int id_voiture, String name) {
         this.id_voiture = id_voiture;

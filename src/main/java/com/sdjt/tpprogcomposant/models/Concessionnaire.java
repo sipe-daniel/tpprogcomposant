@@ -14,10 +14,10 @@ public class Concessionnaire {
     private int id_concessionnaire;
     private String name;
 
-    @OneToMany( mappedBy="concessionnaire")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="concessionnaire")
     private List<Adresse> adresses;
 
-    @ManyToMany(mappedBy = "concessionnaires")
+    @ManyToMany(fetch=FetchType.LAZY, mappedBy = "concessionnaires")
     @JsonIgnore
     private List<Marque> marques;
 

@@ -17,8 +17,8 @@ public class Adresse {
     private String pays;
     private String numero_de_tel;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "id_concessionnaire"), name = "id_concessionnaire")
     private Concessionnaire concessionnaire;
 
     public Adresse() {
