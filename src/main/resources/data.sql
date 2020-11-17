@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS concessionnaires_marques_junction
     CONSTRAINT FK_marque FOREIGN KEY (id_marque) REFERENCES marques (id_marque)
 );
 
+
 INSERT INTO marques VALUES(1, '4S');
 INSERT INTO marques VALUES(2, 'Lexus');
 INSERT INTO marques VALUES(3, 'Renault');
