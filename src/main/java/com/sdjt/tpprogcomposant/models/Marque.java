@@ -19,6 +19,7 @@ public class Marque {
     @JsonIgnore
     private List<Voiture> voitures;
 
+
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinTable(name = "concessionnaires_marques_junction",
             joinColumns = @JoinColumn(name = "id_concessionnaire"),

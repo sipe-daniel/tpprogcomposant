@@ -15,7 +15,9 @@ public class Concessionnaire {
     private String name;
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="concessionnaire")
+    @JsonIgnore
     private List<Adresse> adresses;
+
 
     @ManyToMany(fetch=FetchType.LAZY, mappedBy = "concessionnaires")
     @JsonIgnore

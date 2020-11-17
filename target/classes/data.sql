@@ -1,3 +1,51 @@
+CREATE TABLE IF NOT EXISTS marques
+(
+    id_marque int not null AUTO_INCREMENT primary key,
+    name varchar(50)
+);
+
+-- Marques  1 - n Voitures
+-- Clients  1 - n Voitures
+CREATE TABLE IF NOT EXISTS voitures
+(
+    id_voiture int not null AUTO_INCREMENT primary key,
+    name varchar(50),
+    id_marque int NOT NULL REFERENCES marques(id_marque),
+    id_client int NOT NULL REFERENCES clients(id_client)
+);
+
+CREATE TABLE IF NOT EXISTS concessionnaires
+(
+    id_concessionnaire int not null AUTO_INCREMENT primary key,
+    name varchar(50)
+);
+
+CREATE TABLE IF NOT EXISTS clients
+(
+    id_client int not null AUTO_INCREMENT primary key,
+    name varchar(50)
+);
+
+CREATE TABLE IF NOT EXISTS adresses
+(
+    id_adresse int not null AUTO_INCREMENT primary key,
+    adresse_ville varchar(50),
+    pays varchar(50),
+    numero_de_tel varchar(70),
+    id_concessionnaire int NOT NULL REFERENCES concessionnaires(id_concessionnaire)
+);
+
+-- Concessionnaire n - n Marques
+CREATE TABLE IF NOT EXISTS concessionnaires_marques_junction
+(
+    id_concessionnaire int,
+    id_marque int,
+    CONSTRAINT concessionnaire_marque_pk PRIMARY KEY (id_concessionnaire, id_marque),
+    CONSTRAINT FK_concessionnaire FOREIGN KEY (id_concessionnaire) REFERENCES concessionnaires (id_concessionnaire),
+    CONSTRAINT FK_marque FOREIGN KEY (id_marque) REFERENCES marques (id_marque)
+);
+
+
 INSERT INTO marques VALUES(1, '4S');
 INSERT INTO marques VALUES(2, 'Lexus');
 INSERT INTO marques VALUES(3, 'Renault');
