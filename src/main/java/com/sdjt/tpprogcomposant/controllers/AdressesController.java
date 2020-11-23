@@ -1,8 +1,6 @@
 package com.sdjt.tpprogcomposant.controllers;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sdjt.tpprogcomposant.models.Adresse;
-import com.sdjt.tpprogcomposant.models.Concessionnaire;
 import com.sdjt.tpprogcomposant.repositories.AdresseRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

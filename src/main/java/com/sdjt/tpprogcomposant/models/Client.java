@@ -1,5 +1,6 @@
 package com.sdjt.tpprogcomposant.models;
 
+import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "clients")
+@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Client {
     @Id
@@ -14,24 +16,9 @@ public class Client {
     private int id_client;
     private String name;
 
-    @OneToMany( mappedBy="client" )
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="client")
     @JsonIgnore
     private List<Voiture> voitures;
-
-    public Client(){}
-
-    public Client(int id_client, String name) {
-        this.id_client = id_client;
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public List<Voiture> getVoitures() {
         return voitures;
@@ -41,13 +28,13 @@ public class Client {
         this.voitures = voitures;
     }
 
-    public int getId_client() {
-        return id_client;
+    public Client(){}
+
+    public Client(int id_client, String name) {
+        this.id_client = id_client;
+        this.name = name;
     }
 
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
-    }
 
 
 }

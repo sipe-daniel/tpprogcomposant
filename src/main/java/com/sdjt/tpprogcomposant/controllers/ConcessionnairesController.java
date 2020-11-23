@@ -1,7 +1,6 @@
 package com.sdjt.tpprogcomposant.controllers;
 
 import com.sdjt.tpprogcomposant.models.Concessionnaire;
-import com.sdjt.tpprogcomposant.models.Marque;
 import com.sdjt.tpprogcomposant.repositories.ConcessionnaireRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

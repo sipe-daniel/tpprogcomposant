@@ -2,11 +2,13 @@ package com.sdjt.tpprogcomposant.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "concessionnaires")
+@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Concessionnaire {
     @Id
@@ -31,27 +33,6 @@ public class Concessionnaire {
         this.name = name;
     }
 
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
-
-    public List<Adresse> getAdresses() { return adresses; }
-
-    public void setAdresses(List<Adresse> adresses) { this.adresses = adresses; }
-
-    public List<Marque> getMarques() { return marques; }
-
-    public void setMarques(List<Marque> marques) { this.marques = marques; }
-
-
-
-    public int getId_concessionnaire() {
-        return id_concessionnaire;
-    }
-
-    public void setId_concessionnaire(int id_concessionnaire) {
-        this.id_concessionnaire = id_concessionnaire;
-    }
 
 
 }

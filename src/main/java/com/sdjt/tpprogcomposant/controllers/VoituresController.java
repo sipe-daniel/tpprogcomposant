@@ -1,6 +1,5 @@
 package com.sdjt.tpprogcomposant.controllers;
 
-import com.sdjt.tpprogcomposant.models.Marque;
 import com.sdjt.tpprogcomposant.models.Voiture;
 import com.sdjt.tpprogcomposant.repositories.VoitureRepository;
 import org.springframework.beans.BeanUtils;
@@ -9,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController(value = "/api/v0/voitures")
+@RestController
+@RequestMapping(value = "/api/v0/voitures")
 public class VoituresController {
     @Autowired
     private VoitureRepository voitureRepository;

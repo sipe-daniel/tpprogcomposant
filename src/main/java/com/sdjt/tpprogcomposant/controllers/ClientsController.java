@@ -1,8 +1,6 @@
 package com.sdjt.tpprogcomposant.controllers;
 
-import com.sdjt.tpprogcomposant.models.Adresse;
 import com.sdjt.tpprogcomposant.models.Client;
-import com.sdjt.tpprogcomposant.models.Concessionnaire;
 import com.sdjt.tpprogcomposant.repositories.ClientRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +41,5 @@ public class ClientsController {
         BeanUtils.copyProperties(client, existingClient, "id_client");
         return clientRepository.saveAndFlush(existingClient);
     }
+
 }

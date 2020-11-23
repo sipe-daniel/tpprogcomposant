@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 src/main/resources/bug
-
+src/main/resources/tâches.txt
 ### IntelliJ IDEA ###
 .idea
 *.iws
